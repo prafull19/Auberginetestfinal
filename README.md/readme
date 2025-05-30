@@ -1,0 +1,88 @@
+How to Run This Project Locally (for another user)
+This guide assumes the user has Git and Python 3.x installed on their system.
+
+Step 1: Clone the Repository
+First, the user needs to get a copy of your project from GitHub.
+
+Open your terminal or command prompt.
+Navigate to the directory where you want to store the project (e.g., C:\Users\YourUser\Projects).
+Bash
+
+cd C:\Users\YourUser\Projects
+Clone the repository using the URL from your public GitHub repository:
+Bash
+
+git clone https://github.com/YOUR_GITHUB_USERNAME/auberginetest.git
+(Replace YOUR_GITHUB_USERNAME with your actual GitHub username).
+Step 2: Navigate into the Project Directory
+After cloning, a new folder named auberginetest will be created.
+
+Change your current directory to the newly cloned project folder:
+Bash
+
+cd auberginetest
+Step 3: Set Up a Python Virtual Environment (Highly Recommended)
+A virtual environment isolates the project's dependencies from other Python projects on your system, preventing conflicts.
+
+Create the virtual environment:
+Bash
+
+python -m venv .venv
+(This creates a folder named .venv inside your project directory.)
+Activate the virtual environment:
+On Windows:
+Bash
+
+.\.venv\Scripts\activate
+On macOS / Linux:
+Bash
+
+source ./.venv/bin/activate
+(You'll see (.venv) or similar in your terminal prompt, indicating the environment is active.)
+Step 4: Install Project Dependencies
+The project uses a requirements.txt file to list all necessary Python libraries.
+
+Install the dependencies:
+Bash
+
+pip install -r requirements.txt
+This will install selenium, pytest, and any other libraries listed in that file.
+Step 5: Download and Place ChromeDriver
+Selenium needs a browser-specific driver to control the browser. This project uses ChromeDriver for Google Chrome.
+
+Check your Google Chrome browser version:
+Open Chrome.
+Go to Settings (three dots menu) > Help > About Google Chrome.
+Note down the exact version number (e.g., 125.0.6422.142).
+Download the compatible ChromeDriver:
+Go to the official ChromeDriver download page: https://googlechromelabs.github.io/chrome-for-testing/
+Find the ChromeDriver version that matches your Chrome browser's version.
+Download the chromedriver executable for your operating system (e.g., chromedriver_win64.zip for Windows).
+Extract the executable: Unzip the downloaded file. You'll find chromedriver.exe (Windows) or chromedriver (macOS/Linux) inside.
+Place the executable in the drivers/ folder:
+Copy the chromedriver.exe (or chromedriver) file into the auberginetest/drivers/ directory within your cloned project.
+Important: Ensure the file is named exactly chromedriver.exe on Windows, or chromedriver on macOS/Linux (without any extra numbers or extensions like .zip).
+Step 6: Create the Dummy Upload File
+The upload test scenario requires a specific file to be present.
+
+Create an empty file named test_file.pdf directly in the root directory of the auberginetest project. You can do this manually or via command line:
+On Windows (PowerShell):
+PowerShell
+
+New-Item -Path . -Name "test_file.pdf" -ItemType File
+On macOS / Linux:
+Bash
+
+touch test_file.pdf
+(The content of the PDF doesn't matter for this test, only its existence and name.)
+Step 7: Run the Tests
+Now you can execute the test suite using Pytest.
+
+From the auberginetest project root directory, run the following command:
+
+Bash
+
+pytest -s -v
+-s: Allows print() statements from the tests to be displayed in the console.
+-v: Provides verbose output, showing individual test names and results.
+This command will discover and run all the test scenarios defined in the tests/ directory.
